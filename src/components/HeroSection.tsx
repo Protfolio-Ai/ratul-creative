@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowDown, Mail, ShieldCheck, Palette, PenTool, Sparkles, Film, Scissors } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const tags = ["Graphic Design", "Social Media", "Cyber Security", "Web Dev", "Video Editing"];
+const tags = ["Graphic Design", "Social Media", "Cyber Security", "Vibe Coding", "Video Editing"];
 
 const floatingSkills = [
   { Icon: Palette, alt: "Photoshop", top: "5%", left: "-8%", delay: 0, duration: 3.5 },
@@ -32,14 +32,21 @@ const HeroSection = () => (
           Digital Creator & Specialist
         </motion.p>
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight"
+          initial="hidden"
+          animate="visible"
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0.4 } } }}
+          className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight flex flex-wrap gap-x-[0.3em]"
         >
-          Creative Digital{" "}
-          <span className="text-primary">Designer</span> &{" "}
-          <span className="text-primary">Tech</span> Specialist
+          {["Creative", "Digital", "Designer", "&", "Tech", "Specialist"].map((word) => (
+            <span key={word} className="overflow-hidden inline-block">
+              <motion.span
+                variants={{ hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } } }}
+                className={`inline-block ${word === "Designer" || word === "Tech" ? "text-primary" : ""}`}
+              >
+                {word}
+              </motion.span>
+            </span>
+          ))}
         </motion.h1>
 
         <div className="flex flex-wrap gap-2 mt-2">

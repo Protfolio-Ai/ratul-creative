@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { Palette, Share2, ShieldCheck, Code, Film, Stamp } from "lucide-react";
+import { Palette, Share2, ShieldCheck, Wand2, Film, Stamp } from "lucide-react";
 
 const services = [
   { icon: Palette, title: "Graphic Design", desc: "Posters, banners, social media graphics & advertising creatives that capture attention." },
   { icon: Share2, title: "Social Media Management", desc: "Content strategy, scheduling & growth-driven social media campaigns." },
   { icon: ShieldCheck, title: "Cyber Security", desc: "Security consulting, vulnerability assessments & digital protection strategies." },
-  { icon: Code, title: "Web Coding", desc: "Modern front-end web development with clean, responsive & performant code." },
+  { icon: Wand2, title: "Vibe Coding", desc: "AI-powered vibe coding to build modern, responsive websites & web apps effortlessly." },
   { icon: Film, title: "Video Editing", desc: "Professional video editing for social media, marketing & digital storytelling." },
   { icon: Stamp, title: "Branding & Identity", desc: "Logo design, brand guidelines & cohesive visual identity systems." },
 ];
