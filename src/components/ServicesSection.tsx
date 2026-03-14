@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Palette, Share2, ShieldCheck, Code, Film, Stamp } from "lucide-react";
+import { Palette, Share2, ShieldCheck, Wand2, Film, Stamp } from "lucide-react";
 
 const services = [
   { icon: Palette, title: "Graphic Design", desc: "Posters, banners, social media graphics & advertising creatives that capture attention." },
