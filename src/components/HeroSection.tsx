@@ -1,12 +1,21 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Download, Mail } from "lucide-react";
+import { ArrowDown, Mail, Code, Shield, Palette, Film, Figma, Scissors } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const tags = ["Graphic Design", "Social Media", "Cyber Security", "Web Dev", "Video Editing"];
 
+const floatingSkills = [
+  { label: "Ps", top: "5%", left: "-8%", delay: 0, duration: 3.5 },
+  { label: "Pr", top: "15%", right: "-6%", delay: 0.8, duration: 4.2 },
+  { label: "Ae", bottom: "25%", left: "-10%", delay: 1.5, duration: 3.8 },
+  { label: "Figma", top: "55%", right: "-8%", delay: 0.4, duration: 4.5 },
+  { label: "CapCut", bottom: "10%", right: "5%", delay: 1.2, duration: 3.2 },
+  { label: "</>" , top: "-2%", right: "30%", delay: 2, duration: 4 },
+  { label: "🛡️", bottom: "5%", left: "5%", delay: 0.6, duration: 3.6 },
+];
+
 const HeroSection = () => (
   <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-16">
-    {/* grid bg */}
     <div className="absolute inset-0 opacity-[0.04]" style={{
       backgroundImage: "radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1px)",
       backgroundSize: "32px 32px",
@@ -57,16 +66,13 @@ const HeroSection = () => (
           <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
             <a href="#portfolio"><ArrowDown size={16} /> View Portfolio</a>
           </Button>
-          <Button asChild variant="outline" className="border-primary/30 text-primary hover:bg-primary/10">
-            <a href="/Ratul_Hasan_CV.pdf" download><Download size={16} /> Download CV</a>
-          </Button>
           <Button asChild variant="ghost" className="text-muted-foreground hover:text-foreground">
             <a href="#contact"><Mail size={16} /> Contact Me</a>
           </Button>
         </motion.div>
       </div>
 
-      {/* Right — profile image */}
+      {/* Right — profile image with floating skills */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -74,6 +80,24 @@ const HeroSection = () => (
         className="relative flex justify-center md:justify-end"
       >
         <div className="absolute w-80 h-80 rounded-full bg-primary/20 blur-[100px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+        
+        {/* Floating skill badges */}
+        {floatingSkills.map((skill) => (
+          <div
+            key={skill.label}
+            className="absolute z-20 px-2.5 py-1.5 rounded-lg text-xs font-mono-label font-bold border border-primary/40 bg-background/80 text-primary backdrop-blur-sm shadow-[0_0_12px_hsl(var(--primary)/0.25)]"
+            style={{
+              top: skill.top,
+              left: skill.left,
+              right: skill.right,
+              bottom: skill.bottom,
+              animation: `float ${skill.duration}s ease-in-out ${skill.delay}s infinite`,
+            }}
+          >
+            {skill.label}
+          </div>
+        ))}
+
         <img
           src="/profile.jpg"
           alt="MD. Ratul Hasan Lemon"
