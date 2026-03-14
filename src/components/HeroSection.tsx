@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowDown, Mail, ShieldCheck, Palette, PenTool, Sparkles, Film, Scissors } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const tags = ["Graphic Design", "Social Media", "Cyber Security", "Web Dev", "Video Editing"];
+const tags = ["Graphic Design", "Social Media", "Cyber Security", "Vibe Coding", "Video Editing"];
 
 const floatingSkills = [
   { Icon: Palette, alt: "Photoshop", top: "5%", left: "-8%", delay: 0, duration: 3.5 },
