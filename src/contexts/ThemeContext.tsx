@@ -16,7 +16,7 @@ const THEMES: Theme[] = ["light", "dark", "blue-dark"];
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
     const stored = localStorage.getItem(THEME_KEY);
-    return THEMES.includes(stored as Theme) ? (stored as Theme) : "light";
+    return THEMES.includes(stored as Theme) ? (stored as Theme) : "blue-dark";
   });
 
   const setTheme = (t: Theme) => {
