@@ -7,7 +7,7 @@ const skills = [
   { name: "Social Media Design", pct: 96 },
   { name: "Web Banner Design", pct: 90 },
   { name: "Cyber Security", pct: 80 },
-  { name: "Web Coding", pct: 85 },
+  { name: "Vibe Coding", pct: 85 },
   { name: "Video Editing", pct: 88 },
   { name: "Adobe Premiere Pro", pct: 85 },
   { name: "After Effects", pct: 78 },

@@ -30,7 +30,7 @@ const AboutSection = () => (
           I am <span className="text-foreground font-semibold">Ratul Hasan Lemon</span>, a creative digital professional with more than 5 years of experience in graphic design, branding, and digital media. I specialize in creating impactful visual identities, posters, social media graphics, and web banners.
         </p>
         <p>
-          Alongside design, I work as a multimedia reporter producing digital news content. I also provide professional services in social media management, cyber security consultation, web coding and video editing.
+          Alongside design, I work as a multimedia reporter producing digital news content. I also provide professional services in social media management, cyber security consultation, vibe coding and video editing.
         </p>
       </motion.div>
     </div>
