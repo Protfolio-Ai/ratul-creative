@@ -1,16 +1,16 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Mail, ShieldCheck } from "lucide-react";
+import { ArrowDown, Mail, ShieldCheck, Palette, PenTool, Sparkles, Film, Scissors } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const tags = ["Graphic Design", "Social Media", "Cyber Security", "Web Dev", "Video Editing"];
 
 const floatingSkills = [
-  { icon: "https://cdn.simpleicons.org/adobephotoshop/31A8FF", alt: "Photoshop", top: "5%", left: "-8%", delay: 0, duration: 3.5 },
-  { icon: "https://cdn.simpleicons.org/adobeillustrator/FF9A00", alt: "Illustrator", top: "15%", right: "-6%", delay: 0.8, duration: 4.2 },
-  { icon: "https://cdn.simpleicons.org/adobeaftereffects/9999FF", alt: "After Effects", bottom: "25%", left: "-10%", delay: 1.5, duration: 3.8 },
-  { icon: "https://cdn.simpleicons.org/adobepremierepro/9999FF", alt: "Premiere Pro", top: "55%", right: "-8%", delay: 0.4, duration: 4.5 },
-  { icon: "https://cdn.simpleicons.org/capcut/FFFFFF", alt: "CapCut", bottom: "10%", right: "5%", delay: 1.2, duration: 3.2 },
-  { icon: "shield", alt: "Cyber Security", top: "-2%", right: "30%", delay: 2, duration: 4 },
+  { Icon: Palette, alt: "Photoshop", top: "5%", left: "-8%", delay: 0, duration: 3.5 },
+  { Icon: PenTool, alt: "Illustrator", top: "15%", right: "-6%", delay: 0.8, duration: 4.2 },
+  { Icon: Sparkles, alt: "After Effects", bottom: "25%", left: "-10%", delay: 1.5, duration: 3.8 },
+  { Icon: Film, alt: "Premiere Pro", top: "55%", right: "-8%", delay: 0.4, duration: 4.5 },
+  { Icon: Scissors, alt: "CapCut", bottom: "10%", right: "5%", delay: 1.2, duration: 3.2 },
+  { Icon: ShieldCheck, alt: "Cyber Security", top: "-2%", right: "30%", delay: 2, duration: 4 },
 ];
 
 const HeroSection = () => (
@@ -79,36 +79,37 @@ const HeroSection = () => (
         className="relative flex justify-center md:justify-end"
       >
         <div className="absolute w-80 h-80 rounded-full bg-primary/20 blur-[100px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-        
-        {/* Floating skill badges */}
-        {floatingSkills.map((skill) => (
-          <div
-            key={skill.alt}
-            className="absolute z-20 p-2.5 rounded-xl bg-background/60 backdrop-blur-md border border-primary/30"
-            style={{
-              top: skill.top,
-              left: skill.left,
-              right: skill.right,
-              bottom: skill.bottom,
-              animation: `float ${skill.duration}s ease-in-out ${skill.delay}s infinite`,
-              boxShadow: "0 0 20px hsl(var(--primary) / 0.3), 0 0 40px hsl(var(--primary) / 0.15), 0 4px 12px rgba(0,0,0,0.5)",
-              filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.4))",
-            }}
-          >
-            {skill.icon === "shield" ? (
-              <ShieldCheck size={32} className="text-primary" />
-            ) : (
-              <img src={skill.icon} alt={skill.alt} width={32} height={32} />
-            )}
-          </div>
-        ))}
 
-        <img
-          src="/profile.jpg"
-          alt="MD. Ratul Hasan Lemon"
-          className="relative z-10 w-72 sm:w-80 lg:w-96 rounded-2xl object-cover animate-float"
-          style={{ maskImage: "linear-gradient(to bottom, black 80%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, black 80%, transparent 100%)" }}
-        />
+        {/* Floating skill badges */}
+        {floatingSkills.map((skill) => {
+          const IconComp = skill.Icon;
+          return (
+            <div
+              key={skill.alt}
+              className="absolute z-20 p-2.5 rounded-xl bg-background/60 backdrop-blur-md border border-primary/30"
+              style={{
+                top: skill.top,
+                left: skill.left,
+                right: skill.right,
+                bottom: skill.bottom,
+                animation: `float ${skill.duration}s ease-in-out ${skill.delay}s infinite`,
+                boxShadow: "0 0 20px hsl(var(--primary) / 0.3), 0 0 40px hsl(var(--primary) / 0.15), 0 4px 12px rgba(0,0,0,0.5)",
+              }}
+            >
+              <IconComp size={32} className="text-primary" />
+            </div>
+          );
+        })}
+
+        {/* Rotating gradient border wrapper */}
+        <div className="relative z-10 w-72 sm:w-80 lg:w-96 rounded-2xl gradient-border p-[3px]">
+          <img
+            src="/profile.jpg"
+            alt="MD. Ratul Hasan Lemon"
+            className="w-full rounded-2xl object-cover animate-float"
+            style={{ maskImage: "linear-gradient(to bottom, black 80%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, black 80%, transparent 100%)" }}
+          />
+        </div>
       </motion.div>
     </div>
   </section>
