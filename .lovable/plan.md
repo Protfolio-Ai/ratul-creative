@@ -1,20 +1,45 @@
 
 
-## Plan: Ensure Blinking Cursor Stays at End of "Specialist"
+## Plan: Default Navy Blue Theme + Larger About Text + AI Chat for Services
 
-The typing animation and cursor already work correctly in the code. The cursor blinks at the end of the typed text via `showCursor` state toggling every 530ms. Once typing completes (`displayedLength === fullTitle.length`), the cursor remains at the end and keeps blinking.
+### 1. Set "blue-dark" as default theme
+**File: `src/contexts/ThemeContext.tsx`**
+- Change the default fallback from `"light"` to `"blue-dark"` on line 19
 
-**However**, there's a potential issue: the cursor might appear to "jump" because it's placed outside the `renderTypedText()` output. As each new character appears, the text reflows and the cursor shifts. After typing finishes, it should be stable.
+### 2. Increase About section body text size
+**File: `src/components/AboutSection.tsx`**
+- Change the text container class from default size to `text-lg` (or `text-base sm:text-lg`) and keep `leading-relaxed`
 
-### What I'll verify/fix:
+### 3. Integrate Gemini AI chat into Services section
+When a user clicks a service card (e.g. Graphic Design, Vibe Coding), a dialog opens with an AI-powered chat that provides information about how Ratul delivers that specific service. This requires:
 
-**In `src/components/HeroSection.tsx`:**
-- Ensure the cursor only blinks (no jumping) after typing completes by keeping the current implementation intact — it already does this correctly
-- The blinking cursor (`w-[3px]` bar) is already positioned inline after the last typed character and blinks indefinitely via the `setInterval`
+**a. Enable Lovable Cloud + AI Gateway**
+- Set up a Supabase edge function to proxy requests to the Lovable AI Gateway
+- The system prompt will include Ratul's profile info and the selected service context
 
-**No changes needed** — the current code already has the cursor blinking permanently at the end after "Specialist" is fully typed. The `useEffect` for blinking runs independently and never stops.
+**b. Create edge function `supabase/functions/service-chat/index.ts`**
+- Accepts `{ service: string, messages: [...] }` from the client
+- Adds a system prompt: "You are an AI assistant for Ratul Hasan Lemon's portfolio. The customer is asking about the '{service}' service. Explain how Ratul provides this service, his experience, process, and what customers can expect. Be professional and helpful."
+- Streams response from Lovable AI Gateway using `LOVABLE_API_KEY`
+- Handles CORS, 429/402 errors
 
-If the user is seeing the cursor "jump" during typing (before completion), that's expected behavior as characters appear. After typing finishes, the cursor stays fixed at the end of "Specialist" and blinks continuously.
+**c. Create `supabase/config.toml`**
+- Register the `service-chat` function with `verify_jwt = false`
 
-If there's an actual visual bug, I'd need to check the preview. Shall I verify in the browser?
+**d. Create `src/components/ServiceChatDialog.tsx`**
+- A dialog component with:
+  - Service title in the header
+  - Chat messages list (user + assistant) rendered with `react-markdown`
+  - Text input + send button
+  - Streaming token-by-token display
+  - Pre-populated first assistant message like "Hi! Ask me anything about how Ratul handles {service}."
+
+**e. Update `src/components/ServicesSection.tsx`**
+- Make each service card clickable (cursor-pointer)
+- On click, open `ServiceChatDialog` with the selected service title
+- Add a subtle "Learn More" or chat icon indicator on each card
+
+### Dependencies
+- Need to install `react-markdown` package
+- Lovable Cloud must be enabled for the edge function and `LOVABLE_API_KEY`
 
