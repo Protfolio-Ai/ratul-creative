@@ -83,17 +83,23 @@ const HeroSection = () => (
         {/* Floating skill badges */}
         {floatingSkills.map((skill) => (
           <div
-            key={skill.label}
-            className="absolute z-20 px-2.5 py-1.5 rounded-lg text-xs font-mono-label font-bold border border-primary/40 bg-background/80 text-primary backdrop-blur-sm shadow-[0_0_12px_hsl(var(--primary)/0.25)]"
+            key={skill.alt}
+            className="absolute z-20 p-2.5 rounded-xl bg-background/60 backdrop-blur-md border border-primary/30"
             style={{
               top: skill.top,
               left: skill.left,
               right: skill.right,
               bottom: skill.bottom,
               animation: `float ${skill.duration}s ease-in-out ${skill.delay}s infinite`,
+              boxShadow: "0 0 20px hsl(var(--primary) / 0.3), 0 0 40px hsl(var(--primary) / 0.15), 0 4px 12px rgba(0,0,0,0.5)",
+              filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.4))",
             }}
           >
-            {skill.label}
+            {skill.icon === "shield" ? (
+              <ShieldCheck size={32} className="text-primary" />
+            ) : (
+              <img src={skill.icon} alt={skill.alt} width={32} height={32} />
+            )}
           </div>
         ))}
 
