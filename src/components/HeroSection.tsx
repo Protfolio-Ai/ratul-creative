@@ -1,17 +1,16 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Mail, Code, Shield, Palette, Film, Figma, Scissors } from "lucide-react";
+import { ArrowDown, Mail, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const tags = ["Graphic Design", "Social Media", "Cyber Security", "Web Dev", "Video Editing"];
 
 const floatingSkills = [
-  { label: "Ps", top: "5%", left: "-8%", delay: 0, duration: 3.5 },
-  { label: "Pr", top: "15%", right: "-6%", delay: 0.8, duration: 4.2 },
-  { label: "Ae", bottom: "25%", left: "-10%", delay: 1.5, duration: 3.8 },
-  { label: "Figma", top: "55%", right: "-8%", delay: 0.4, duration: 4.5 },
-  { label: "CapCut", bottom: "10%", right: "5%", delay: 1.2, duration: 3.2 },
-  { label: "</>" , top: "-2%", right: "30%", delay: 2, duration: 4 },
-  { label: "🛡️", bottom: "5%", left: "5%", delay: 0.6, duration: 3.6 },
+  { icon: "https://cdn.simpleicons.org/adobephotoshop/31A8FF", alt: "Photoshop", top: "5%", left: "-8%", delay: 0, duration: 3.5 },
+  { icon: "https://cdn.simpleicons.org/adobeillustrator/FF9A00", alt: "Illustrator", top: "15%", right: "-6%", delay: 0.8, duration: 4.2 },
+  { icon: "https://cdn.simpleicons.org/adobeaftereffects/9999FF", alt: "After Effects", bottom: "25%", left: "-10%", delay: 1.5, duration: 3.8 },
+  { icon: "https://cdn.simpleicons.org/adobepremierepro/9999FF", alt: "Premiere Pro", top: "55%", right: "-8%", delay: 0.4, duration: 4.5 },
+  { icon: "https://cdn.simpleicons.org/capcut/FFFFFF", alt: "CapCut", bottom: "10%", right: "5%", delay: 1.2, duration: 3.2 },
+  { icon: "shield", alt: "Cyber Security", top: "-2%", right: "30%", delay: 2, duration: 4 },
 ];
 
 const HeroSection = () => (
