@@ -24,7 +24,7 @@ const AboutSection = () => (
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2 }}
-        className="space-y-5 text-muted-foreground leading-relaxed"
+        className="space-y-5 text-muted-foreground text-base sm:text-lg leading-relaxed"
       >
         <p>
           I am <span className="text-foreground font-semibold">Ratul Hasan Lemon</span>, a creative digital professional with more than 5 years of experience in graphic design, branding, and digital media. I specialize in creating impactful visual identities, posters, social media graphics, and web banners.
