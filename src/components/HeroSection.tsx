@@ -1,17 +1,16 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Mail, Code, Shield, Palette, Film, Figma, Scissors } from "lucide-react";
+import { ArrowDown, Mail, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const tags = ["Graphic Design", "Social Media", "Cyber Security", "Web Dev", "Video Editing"];
 
 const floatingSkills = [
-  { label: "Ps", top: "5%", left: "-8%", delay: 0, duration: 3.5 },
-  { label: "Pr", top: "15%", right: "-6%", delay: 0.8, duration: 4.2 },
-  { label: "Ae", bottom: "25%", left: "-10%", delay: 1.5, duration: 3.8 },
-  { label: "Figma", top: "55%", right: "-8%", delay: 0.4, duration: 4.5 },
-  { label: "CapCut", bottom: "10%", right: "5%", delay: 1.2, duration: 3.2 },
-  { label: "</>" , top: "-2%", right: "30%", delay: 2, duration: 4 },
-  { label: "🛡️", bottom: "5%", left: "5%", delay: 0.6, duration: 3.6 },
+  { icon: "https://cdn.simpleicons.org/adobephotoshop/31A8FF", alt: "Photoshop", top: "5%", left: "-8%", delay: 0, duration: 3.5 },
+  { icon: "https://cdn.simpleicons.org/adobeillustrator/FF9A00", alt: "Illustrator", top: "15%", right: "-6%", delay: 0.8, duration: 4.2 },
+  { icon: "https://cdn.simpleicons.org/adobeaftereffects/9999FF", alt: "After Effects", bottom: "25%", left: "-10%", delay: 1.5, duration: 3.8 },
+  { icon: "https://cdn.simpleicons.org/adobepremierepro/9999FF", alt: "Premiere Pro", top: "55%", right: "-8%", delay: 0.4, duration: 4.5 },
+  { icon: "https://cdn.simpleicons.org/capcut/FFFFFF", alt: "CapCut", bottom: "10%", right: "5%", delay: 1.2, duration: 3.2 },
+  { icon: "shield", alt: "Cyber Security", top: "-2%", right: "30%", delay: 2, duration: 4 },
 ];
 
 const HeroSection = () => (
@@ -84,17 +83,23 @@ const HeroSection = () => (
         {/* Floating skill badges */}
         {floatingSkills.map((skill) => (
           <div
-            key={skill.label}
-            className="absolute z-20 px-2.5 py-1.5 rounded-lg text-xs font-mono-label font-bold border border-primary/40 bg-background/80 text-primary backdrop-blur-sm shadow-[0_0_12px_hsl(var(--primary)/0.25)]"
+            key={skill.alt}
+            className="absolute z-20 p-2.5 rounded-xl bg-background/60 backdrop-blur-md border border-primary/30"
             style={{
               top: skill.top,
               left: skill.left,
               right: skill.right,
               bottom: skill.bottom,
               animation: `float ${skill.duration}s ease-in-out ${skill.delay}s infinite`,
+              boxShadow: "0 0 20px hsl(var(--primary) / 0.3), 0 0 40px hsl(var(--primary) / 0.15), 0 4px 12px rgba(0,0,0,0.5)",
+              filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.4))",
             }}
           >
-            {skill.label}
+            {skill.icon === "shield" ? (
+              <ShieldCheck size={32} className="text-primary" />
+            ) : (
+              <img src={skill.icon} alt={skill.alt} width={32} height={32} />
+            )}
           </div>
         ))}
 
