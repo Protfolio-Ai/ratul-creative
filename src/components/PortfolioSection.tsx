@@ -34,14 +34,14 @@ const PortfolioSection = () => {
 
         {/* All tab — Marquee */}
         {active === "All" && featuredItems.length > 0 && (
-          <div className="overflow-hidden rounded-xl border border-border">
-            <div className="flex animate-marquee w-max">
+          <div className="overflow-hidden py-4">
+            <div className="flex animate-marquee w-max gap-8">
               {[...featuredItems, ...featuredItems].map((p, i) => (
-                <div key={`${p.title}-${i}`} className="flex-shrink-0 w-80 sm:w-96 md:w-[28rem] aspect-[4/3] relative group">
+                <div key={`${p.title}-${i}`} className="flex-shrink-0 poster-gradient-border relative group">
                   {p.image && (
-                    <img src={p.image} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
+                    <img src={p.image} alt={p.title} className="h-72 sm:h-80 md:h-96 w-auto rounded-xl object-contain relative z-[1]" loading="lazy" />
                   )}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center opacity-0 group-hover:opacity-100 bg-background/80 backdrop-blur-sm transition-opacity duration-300">
+                  <div className="absolute inset-[3px] rounded-[calc(1rem-3px)] flex flex-col items-center justify-center p-4 text-center opacity-0 group-hover:opacity-100 bg-background/80 backdrop-blur-sm transition-opacity duration-300 z-[2]">
                     <h3 className="font-display text-sm font-semibold mb-1">{p.title}</h3>
                     <span className="font-mono-label text-xs text-primary">{p.cat}</span>
                   </div>
