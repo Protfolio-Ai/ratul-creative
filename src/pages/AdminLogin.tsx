@@ -4,18 +4,32 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
-import { LogIn } from "lucide-react";
+import { LogIn, UserPlus } from "lucide-react";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isSignup, setIsSignup] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim() || !password.trim()) return;
     setLoading(true);
+
+    if (isSignup) {
+      const { error } = await supabase.auth.signUp({ email: email.trim(), password });
+      if (error) {
+        toast({ title: "Signup failed", description: error.message, variant: "destructive" });
+        setLoading(false);
+        return;
+      }
+      toast({ title: "Account created!", description: "You can now sign in." });
+      setIsSignup(false);
+      setLoading(false);
+      return;
+    }
 
     const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
     if (error) {
@@ -24,7 +38,6 @@ const AdminLogin = () => {
       return;
     }
 
-    // Check admin role
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
       toast({ title: "Login failed", variant: "destructive" });
@@ -50,32 +63,22 @@ const AdminLogin = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-6">
-      <form onSubmit={handleLogin} className="w-full max-w-sm space-y-6">
+      <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-6">
         <div className="text-center">
-          <h1 className="font-display text-3xl font-bold mb-2">Admin Login</h1>
-          <p className="text-sm text-muted-foreground">Sign in to manage your portfolio</p>
+          <h1 className="font-display text-3xl font-bold mb-2">{isSignup ? "Create Account" : "Admin Login"}</h1>
+          <p className="text-sm text-muted-foreground">{isSignup ? "First account will be admin" : "Sign in to manage your portfolio"}</p>
         </div>
         <div className="space-y-4">
-          <Input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="bg-secondary border-border"
-          />
-          <Input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="bg-secondary border-border"
-          />
+          <Input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required className="bg-secondary border-border" />
+          <Input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required minLength={6} className="bg-secondary border-border" />
         </div>
         <Button type="submit" className="w-full" disabled={loading}>
-          <LogIn size={16} /> {loading ? "Signing in..." : "Sign In"}
+          {isSignup ? <><UserPlus size={16} /> {loading ? "Creating..." : "Create Account"}</> : <><LogIn size={16} /> {loading ? "Signing in..." : "Sign In"}</>}
         </Button>
+        <p className="text-center text-sm text-muted-foreground">
+          {isSignup ? "Already have an account?" : "Need an account?"}{" "}
+          <button type="button" onClick={() => setIsSignup(!isSignup)} className="text-primary hover:underline">{isSignup ? "Sign In" : "Sign Up"}</button>
+        </p>
       </form>
     </div>
   );
