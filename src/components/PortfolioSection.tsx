@@ -40,7 +40,7 @@ const PortfolioSection = () => {
               {[...featuredItems, ...featuredItems].map((p, i) => (
                 <div key={`${p.title}-${i}`} className="flex-shrink-0 poster-gradient-border relative group">
                   {p.image && (
-                    <img src={p.image} alt={p.title} className="h-72 sm:h-80 md:h-96 w-auto rounded-xl object-contain relative z-[1]" loading="lazy" />
+                    <OptimizedImage src={p.image} alt={p.title} className="h-72 sm:h-80 md:h-96 w-auto rounded-xl object-contain relative z-[1]" />
                   )}
                   <div className="absolute inset-[3px] rounded-[calc(1rem-3px)] flex flex-col items-center justify-center p-4 text-center opacity-0 group-hover:opacity-100 bg-background/80 backdrop-blur-sm transition-opacity duration-300 z-[2]">
                     <h3 className="font-display text-sm font-semibold mb-1">{p.title}</h3>
