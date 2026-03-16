@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { usePortfolioItems, useSiteContent } from "@/hooks/useSiteContent";
+import OptimizedImage from "@/components/OptimizedImage";
 
 const PortfolioSection = () => {
   const [active, setActive] = useState("All");
