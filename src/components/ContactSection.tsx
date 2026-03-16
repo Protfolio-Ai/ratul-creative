@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, MessageCircle, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useSiteContent } from "@/hooks/useSiteContent";
+import { toast } from "sonner";
 
 const ContactSection = () => {
   const { data: content } = useSiteContent();
@@ -12,6 +14,32 @@ const ContactSection = () => {
   const location = content?.contact_location || "Chashara, Narayanganj, Bangladesh";
   const whatsapp = content?.whatsapp_number || "8801537543335";
   const behance = content?.behance_url || "https://www.behance.net/mratulhasan10";
+
+  const [name, setName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmedName = name.trim();
+    const trimmedEmail = userEmail.trim();
+    const trimmedMessage = message.trim();
+
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
+    const text = encodeURIComponent(
+      `Name: ${trimmedName}\nEmail: ${trimmedEmail}\nMessage: ${trimmedMessage}`
+    );
+    window.open(`https://wa.me/${whatsapp}?text=${text}`, "_blank");
+
+    setName("");
+    setUserEmail("");
+    setMessage("");
+    toast.success("WhatsApp opening — please send the message!");
+  };
 
   return (
     <section id="contact" className="py-24 px-6 bg-card/50">
@@ -28,11 +56,11 @@ const ContactSection = () => {
               <Button asChild variant="outline" className="border-border"><a href={behance} target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> Behance</a></Button>
             </div>
           </motion.div>
-          <motion.form initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="space-y-4" onSubmit={e => e.preventDefault()}>
-            <Input placeholder="Your Name" className="bg-secondary border-border" />
-            <Input type="email" placeholder="Your Email" className="bg-secondary border-border" />
-            <Textarea placeholder="Your Message" rows={5} className="bg-secondary border-border" />
-            <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">Send Message</Button>
+          <motion.form initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="space-y-4" onSubmit={handleSubmit}>
+            <Input placeholder="Your Name" className="bg-secondary border-border" value={name} onChange={e => setName(e.target.value)} maxLength={100} />
+            <Input type="email" placeholder="Your Email" className="bg-secondary border-border" value={userEmail} onChange={e => setUserEmail(e.target.value)} maxLength={255} />
+            <Textarea placeholder="Your Message" rows={5} className="bg-secondary border-border" value={message} onChange={e => setMessage(e.target.value)} maxLength={1000} />
+            <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">Send Message via WhatsApp</Button>
           </motion.form>
         </div>
       </div>
