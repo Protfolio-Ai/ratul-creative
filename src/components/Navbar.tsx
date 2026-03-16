@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Sun, Moon, Waves } from "lucide-react";
+import { Menu, X, Sun, Moon, Waves, EllipsisVertical } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { useTheme, Theme } from "@/contexts/ThemeContext";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import logoBlue from "@/assets/logo-blue.png";
 
 const links = [
@@ -27,6 +29,7 @@ const themeLabels: Record<Theme, string> = {
 };
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("home");
@@ -96,6 +99,19 @@ const Navbar = () => {
               )}
             </a>
           ))}
+          {/* Three-dot admin menu */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="p-2 rounded-lg hover:bg-secondary transition-colors text-muted-foreground hover:text-foreground">
+                <EllipsisVertical size={16} />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => navigate('/admin/login')}>
+                Admin Panel
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
         <div className="flex md:hidden items-center gap-3">
@@ -120,7 +136,7 @@ const Navbar = () => {
             className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border overflow-hidden"
           >
             <div className="flex flex-col px-6 py-4 gap-4">
-              {links.map((l) => (
+               {links.map((l) => (
                 <a
                   key={l.href}
                   href={l.href}
@@ -132,6 +148,12 @@ const Navbar = () => {
                   {l.label}
                 </a>
               ))}
+              <button
+                onClick={() => { setOpen(false); navigate('/admin/login'); }}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground text-left"
+              >
+                Admin Panel
+              </button>
             </div>
           </motion.div>
         )}
