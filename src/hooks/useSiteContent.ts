@@ -71,7 +71,7 @@ export const usePortfolioItems = () => {
         .select("*")
         .order("sort_order");
       if (error) throw error;
-      return data as { id: string; title: string; category: string; color_class: string; sort_order: number; image_url: string | null }[];
+      return data as { id: string; title: string; category: string; color_class: string; sort_order: number; image_url: string | null; featured: boolean }[];
     },
     staleTime: 1000 * 60 * 5,
   });
