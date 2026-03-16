@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
 import { LogIn, UserPlus } from "lucide-react";
 
+const ALLOWED_ADMIN_EMAILS = ["ratullemon1010@gmail.com", "ratulhassan4444@gmail.com"];
+
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
