@@ -3,25 +3,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { usePortfolioItems, useSiteContent } from "@/hooks/useSiteContent";
 
-const defaultProjects = [
-  { title: "Brand Identity System", cat: "Branding", color: "from-primary/30 to-primary/10" },
-  { title: "Event Poster Series", cat: "Poster Design", color: "from-emerald-500/30 to-emerald-500/10" },
-  { title: "Social Media Campaign", cat: "Social Media", color: "from-blue-500/30 to-blue-500/10" },
-  { title: "Web Banner Collection", cat: "Web Banner", color: "from-purple-500/30 to-purple-500/10" },
-  { title: "Product Ad Creative", cat: "Advertising", color: "from-orange-500/30 to-orange-500/10" },
-  { title: "Package Design Concept", cat: "Packaging", color: "from-rose-500/30 to-rose-500/10" },
-  { title: "Corporate Branding Kit", cat: "Branding", color: "from-cyan-500/30 to-cyan-500/10" },
-  { title: "Festival Poster", cat: "Poster Design", color: "from-amber-500/30 to-amber-500/10" },
-];
-
 const PortfolioSection = () => {
   const [active, setActive] = useState("All");
   const { data: dbItems } = usePortfolioItems();
   const { data: content } = useSiteContent();
 
   const projects = dbItems?.length
-    ? dbItems.map(i => ({ title: i.title, cat: i.category, color: i.color_class }))
-    : defaultProjects;
+    ? dbItems.map(i => ({ title: i.title, cat: i.category, color: i.color_class, image: (i as any).image_url }))
+    : [];
 
   const categories = ["All", ...new Set(projects.map(p => p.cat))];
   const filtered = active === "All" ? projects : projects.filter(p => p.cat === active);
@@ -39,10 +28,13 @@ const PortfolioSection = () => {
             <button key={c} onClick={() => setActive(c)} className={`px-4 py-1.5 rounded-full text-xs font-mono-label transition-all ${active === c ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground hover:text-foreground"}`}>{c}</button>
           ))}
         </div>
-        <motion.div layout className="grid sm:grid-cols-2 gap-5">
+        <motion.div layout className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           <AnimatePresence mode="popLayout">
             {filtered.map(p => (
-              <motion.div key={p.title} layout initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} className={`group relative aspect-[4/3] rounded-xl bg-gradient-to-br ${p.color} border border-border overflow-hidden cursor-pointer`}>
+              <motion.div key={p.title} layout initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} className={`group relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer border border-border ${!p.image ? `bg-gradient-to-br ${p.color}` : ''}`}>
+                {p.image && (
+                  <img src={p.image} alt={p.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+                )}
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center opacity-0 group-hover:opacity-100 bg-background/80 backdrop-blur-sm transition-opacity duration-300">
                   <h3 className="font-display text-lg font-semibold mb-1">{p.title}</h3>
                   <span className="font-mono-label text-xs text-primary">{p.cat}</span>

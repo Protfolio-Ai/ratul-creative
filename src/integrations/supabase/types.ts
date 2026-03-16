@@ -61,6 +61,7 @@ export type Database = {
           category: string
           color_class: string
           id: string
+          image_url: string | null
           sort_order: number
           title: string
         }
@@ -68,6 +69,7 @@ export type Database = {
           category: string
           color_class?: string
           id?: string
+          image_url?: string | null
           sort_order?: number
           title: string
         }
@@ -75,6 +77,7 @@ export type Database = {
           category?: string
           color_class?: string
           id?: string
+          image_url?: string | null
           sort_order?: number
           title?: string
         }
