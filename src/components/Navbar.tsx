@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Sun, Moon, Waves } from "lucide-react";
+import { Menu, X, Sun, Moon, Waves, EllipsisVertical } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { useTheme, Theme } from "@/contexts/ThemeContext";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import logoBlue from "@/assets/logo-blue.png";
 
 const links = [
