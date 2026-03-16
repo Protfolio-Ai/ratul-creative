@@ -10,7 +10,7 @@ import { Plus, Trash2, Save } from "lucide-react";
 type PortfolioItem = { id?: string; title: string; category: string; color_class: string; sort_order: number };
 
 const PortfolioEditor = () => {
-  const { data: items: dbItems } = usePortfolioItems();
+  const { data: dbItems } = usePortfolioItems();
   const queryClient = useQueryClient();
   const [items, setItems] = useState<PortfolioItem[]>([]);
   const [saving, setSaving] = useState(false);
