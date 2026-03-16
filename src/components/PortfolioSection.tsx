@@ -37,7 +37,7 @@ const PortfolioSection = () => {
           <div className="overflow-hidden rounded-xl border border-border">
             <div className="flex animate-marquee w-max">
               {[...featuredItems, ...featuredItems].map((p, i) => (
-                <div key={`${p.title}-${i}`} className="flex-shrink-0 w-64 sm:w-72 md:w-80 aspect-[4/3] relative group">
+                <div key={`${p.title}-${i}`} className="flex-shrink-0 w-80 sm:w-96 md:w-[28rem] aspect-[4/3] relative group">
                   {p.image && (
                     <img src={p.image} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
                   )}
