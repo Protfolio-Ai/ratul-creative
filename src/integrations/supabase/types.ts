@@ -60,6 +60,7 @@ export type Database = {
         Row: {
           category: string
           color_class: string
+          featured: boolean
           id: string
           image_url: string | null
           sort_order: number
@@ -68,6 +69,7 @@ export type Database = {
         Insert: {
           category: string
           color_class?: string
+          featured?: boolean
           id?: string
           image_url?: string | null
           sort_order?: number
@@ -76,6 +78,7 @@ export type Database = {
         Update: {
           category?: string
           color_class?: string
+          featured?: boolean
           id?: string
           image_url?: string | null
           sort_order?: number
