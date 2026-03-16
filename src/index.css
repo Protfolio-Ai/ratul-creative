@@ -185,28 +185,34 @@
   position: relative;
   overflow: hidden;
   border-radius: 1rem;
+  padding: 4px;
 }
 
 .poster-gradient-border::before {
   content: '';
   position: absolute;
-  inset: -50%;
+  inset: -80%;
   background: conic-gradient(
     hsl(var(--primary)) 0deg,
-    transparent 60deg,
-    transparent 180deg,
-    hsl(var(--primary)) 240deg,
-    transparent 300deg
+    hsl(var(--primary) / 0.8) 30deg,
+    transparent 90deg,
+    transparent 150deg,
+    hsl(var(--primary) / 0.6) 180deg,
+    hsl(var(--primary)) 210deg,
+    hsl(var(--primary) / 0.8) 240deg,
+    transparent 300deg,
+    transparent 330deg,
+    hsl(var(--primary) / 0.4) 360deg
   );
-  animation: rotate-gradient 4s linear infinite;
+  animation: rotate-gradient 3s linear infinite;
   z-index: 0;
 }
 
 .poster-gradient-border::after {
   content: '';
   position: absolute;
-  inset: 3px;
+  inset: 4px;
   background: hsl(var(--background));
-  border-radius: calc(1rem - 3px);
+  border-radius: calc(1rem - 4px);
   z-index: 0;
 }
