@@ -21,7 +21,7 @@ const OptimizedImage = ({ src, alt, className, eager = false, ...props }: Optimi
           observer.disconnect();
         }
       },
-      { rootMargin: "200px" }
+      { rootMargin: "600px" }
     );
     observer.observe(ref.current);
     return () => observer.disconnect();
@@ -36,9 +36,11 @@ const OptimizedImage = ({ src, alt, className, eager = false, ...props }: Optimi
         <img
           src={src}
           alt={alt}
+          loading={eager ? "eager" : "lazy"}
           className={cn(className, loaded ? "opacity-100" : "opacity-0", "transition-opacity duration-300")}
           onLoad={() => setLoaded(true)}
           decoding="async"
+          fetchPriority={eager ? "high" : "auto"}
           {...props}
         />
       )}

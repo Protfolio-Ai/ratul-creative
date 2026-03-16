@@ -13,7 +13,7 @@ export const useSiteContent = () => {
       data?.forEach((row: any) => { map[row.id] = row.value; });
       return map;
     },
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 10,
   });
 };
 
@@ -28,7 +28,7 @@ export const useHeroTags = () => {
       if (error) throw error;
       return data as { id: string; label: string; sort_order: number }[];
     },
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 10,
   });
 };
 
@@ -43,7 +43,7 @@ export const useServices = () => {
       if (error) throw error;
       return data as { id: string; title: string; description: string; icon_name: string; sort_order: number }[];
     },
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 10,
   });
 };
 
@@ -58,7 +58,7 @@ export const useSkills = () => {
       if (error) throw error;
       return data as { id: string; name: string; percentage: number; category: string; sort_order: number }[];
     },
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 10,
   });
 };
 
@@ -73,7 +73,7 @@ export const usePortfolioItems = () => {
       if (error) throw error;
       return data as { id: string; title: string; category: string; color_class: string; sort_order: number; image_url: string | null; featured: boolean }[];
     },
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 10,
   });
 };
 
@@ -88,6 +88,6 @@ export const useExperienceItems = () => {
       if (error) throw error;
       return data as { id: string; role: string; company: string; period: string | null; sort_order: number }[];
     },
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 10,
   });
 };
