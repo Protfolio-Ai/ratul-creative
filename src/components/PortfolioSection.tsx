@@ -56,11 +56,11 @@ const PortfolioSection = () => {
           <motion.div layout className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             <AnimatePresence mode="popLayout">
               {filtered.map(p => (
-                <motion.div key={p.title} layout initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} className={`group relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer border border-border ${!p.image ? `bg-gradient-to-br ${p.color}` : ''}`}>
+                <motion.div key={p.title} layout initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} className="poster-gradient-border group relative aspect-[4/3] cursor-pointer">
                   {p.image && (
-                    <img src={p.image} alt={p.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+                    <img src={p.image} alt={p.title} className="absolute inset-[3px] w-[calc(100%-6px)] h-[calc(100%-6px)] rounded-[calc(1rem-3px)] object-cover relative z-[1]" loading="lazy" />
                   )}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center opacity-0 group-hover:opacity-100 bg-background/80 backdrop-blur-sm transition-opacity duration-300">
+                  <div className="absolute inset-[3px] rounded-[calc(1rem-3px)] flex flex-col items-center justify-center p-6 text-center opacity-0 group-hover:opacity-100 bg-background/80 backdrop-blur-sm transition-opacity duration-300 z-[2]">
                     <h3 className="font-display text-lg font-semibold mb-1">{p.title}</h3>
                     <span className="font-mono-label text-xs text-primary">{p.cat}</span>
                   </div>
