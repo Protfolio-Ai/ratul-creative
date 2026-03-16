@@ -11,7 +11,6 @@ const PinterestIcon = ({ size = 16, className = "" }: { size?: number; className
 const Footer = () => {
   const { data: content } = useSiteContent();
   const footerText = content?.footer_text || "© 2026 Ratul Hasan Lemon — Creative Graphic Designer & Digital Specialist";
-  const behance = content?.behance_url || "https://www.behance.net/mratulhasan10";
   const facebook = content?.facebook_url || "https://www.facebook.com/ratulhasan.lemon";
   const email = content?.contact_email || "ratullemon1010@gmail.com";
   const phone = content?.contact_phone || "+8801537543335";
