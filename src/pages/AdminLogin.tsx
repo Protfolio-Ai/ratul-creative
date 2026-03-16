@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
 import { LogIn, UserPlus } from "lucide-react";
 
+const ALLOWED_ADMIN_EMAILS = ["ratullemon1010@gmail.com", "ratulhassan4444@gmail.com"];
+
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,6 +21,11 @@ const AdminLogin = () => {
     setLoading(true);
 
     if (isSignup) {
+      if (!ALLOWED_ADMIN_EMAILS.includes(email.trim().toLowerCase())) {
+        toast({ title: "অনুমতি নেই", description: "This email is not authorized to create an admin account.", variant: "destructive" });
+        setLoading(false);
+        return;
+      }
       const { error } = await supabase.auth.signUp({ email: email.trim(), password });
       if (error) {
         toast({ title: "Signup failed", description: error.message, variant: "destructive" });
