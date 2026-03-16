@@ -15,11 +15,17 @@ const Index = () => (
   <>
     <Navbar />
     <HeroSection />
+    {/* Above-the-fold: loads immediately after hero */}
     <Suspense fallback={<div className="min-h-[200px]" />}>
       <AboutSection />
       <ServicesSection />
+    </Suspense>
+    {/* Below-the-fold: loads independently */}
+    <Suspense fallback={<div className="min-h-[200px]" />}>
       <SkillsSection />
       <PortfolioSection />
+    </Suspense>
+    <Suspense fallback={<div className="min-h-[100px]" />}>
       <ExperienceSection />
       <CVSection />
       <ContactSection />
