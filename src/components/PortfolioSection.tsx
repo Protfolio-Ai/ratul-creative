@@ -13,9 +13,20 @@ const PortfolioSection = () => {
     ? dbItems.map(i => ({ title: i.title, cat: i.category, color: i.color_class, image: i.image_url, featured: i.featured }))
     : [];
 
+  // De-duplicate by title+image to prevent visual repeats
+  const dedup = <T extends { title: string; image: string | null }>(arr: T[]) => {
+    const seen = new Set<string>();
+    return arr.filter(p => {
+      const key = `${p.title}::${p.image}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  };
+
   const categories = ["All", ...new Set(projects.map(p => p.cat))];
-  const filtered = active === "All" ? projects : projects.filter(p => p.cat === active);
-  const featuredItems = projects.filter(p => p.featured);
+  const filtered = active === "All" ? dedup(projects) : dedup(projects.filter(p => p.cat === active));
+  const featuredItems = dedup(projects.filter(p => p.featured));
 
   const behanceUrl = content?.behance_url || "https://www.behance.net/mratulhasan10";
   const facebookUrl = content?.facebook_url || "https://www.facebook.com/ratulhasan.lemon";
