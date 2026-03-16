@@ -29,6 +29,7 @@ const themeLabels: Record<Theme, string> = {
 };
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("home");
