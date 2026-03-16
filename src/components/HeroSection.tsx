@@ -101,7 +101,7 @@ const HeroSection = () => {
             );
           })}
           <div className="relative z-10 w-72 sm:w-80 lg:w-96 rounded-2xl gradient-border p-[3px]">
-            <img src="/profile.jpg" alt="MD. Ratul Hasan Lemon" loading="eager" fetchPriority="high" className="w-full rounded-2xl object-cover animate-float" style={{ maskImage: "linear-gradient(to bottom, black 80%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, black 80%, transparent 100%)" }} />
+            <img src="/profile.jpg" alt="MD. Ratul Hasan Lemon" width={384} height={494} loading="eager" fetchPriority="high" className="w-full rounded-2xl object-cover animate-float" style={{ maskImage: "linear-gradient(to bottom, black 80%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, black 80%, transparent 100%)" }} />
           </div>
         </motion.div>
       </div>
