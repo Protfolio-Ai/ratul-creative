@@ -136,7 +136,7 @@ const Navbar = () => {
             className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border overflow-hidden"
           >
             <div className="flex flex-col px-6 py-4 gap-4">
-              {links.map((l) => (
+               {links.map((l) => (
                 <a
                   key={l.href}
                   href={l.href}
@@ -148,6 +148,12 @@ const Navbar = () => {
                   {l.label}
                 </a>
               ))}
+              <button
+                onClick={() => { setOpen(false); navigate('/admin/login'); }}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground text-left"
+              >
+                Admin Panel
+              </button>
             </div>
           </motion.div>
         )}
