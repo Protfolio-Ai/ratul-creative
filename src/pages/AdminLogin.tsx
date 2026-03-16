@@ -21,6 +21,11 @@ const AdminLogin = () => {
     setLoading(true);
 
     if (isSignup) {
+      if (!ALLOWED_ADMIN_EMAILS.includes(email.trim().toLowerCase())) {
+        toast({ title: "অনুমতি নেই", description: "This email is not authorized to create an admin account.", variant: "destructive" });
+        setLoading(false);
+        return;
+      }
       const { error } = await supabase.auth.signUp({ email: email.trim(), password });
       if (error) {
         toast({ title: "Signup failed", description: error.message, variant: "destructive" });
