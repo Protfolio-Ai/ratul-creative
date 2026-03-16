@@ -180,3 +180,33 @@
   border-radius: calc(1rem - 3px);
   z-index: -1;
 }
+
+.poster-gradient-border {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.poster-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(
+    hsl(var(--primary)) 0deg,
+    transparent 60deg,
+    transparent 180deg,
+    hsl(var(--primary)) 240deg,
+    transparent 300deg
+  );
+  animation: rotate-gradient 4s linear infinite;
+  z-index: 0;
+}
+
+.poster-gradient-border::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  background: hsl(var(--background));
+  border-radius: calc(1rem - 3px);
+  z-index: 0;
+}
