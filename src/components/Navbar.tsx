@@ -140,7 +140,14 @@ const Navbar = () => {
                 <a
                   key={l.href}
                   href={l.href}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setOpen(false);
+                    const id = l.href.slice(1);
+                    setTimeout(() => {
+                      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                    }, 300);
+                  }}
                   className={`text-sm font-medium ${
                     active === l.href.slice(1) ? "text-primary" : "text-muted-foreground"
                   }`}
